@@ -1,0 +1,40 @@
+<div style="margin: 2%;">
+    <div class="layout-row flex">
+      <div class="flex-80 sc-title margin-30"> WORLD </div>
+    </div>
+    {{#paper-card as |card|}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}{{worldName}}{{/text.headline}}
+        {{/title.text}}
+      {{/card.title}}
+      {{paper-divider}}
+
+      {{#card.content}}
+        <div class="layout-column flex">
+          <div class="flex-20">
+            <div class="layout-row flex">
+              <p class="flex-40"> World Name: </p>
+              {{textarea class="flex-60 textAreaWidth" value=worldName}}
+            </div>
+          </div>
+          <div class="flex-60">
+            <div class="layout-row flex">
+              <p class="flex-40"> Description </p>
+              {{textarea class="flex-60 textAreaWidth" rows="4" value=description}}
+            </div>
+          </div>
+          <div class="flex-20">
+            <div class="layout-row flex">
+              <p class="flex-40"> Starting Xp </p>
+              {{input class="flex-60 textAreaWidth" value=startingXp min=0 type="number"}}
+            </div>
+          </div>
+        </div>
+      {{/card.content}}
+      {{#card.actions }}
+        {{#paper-button primary=true onClick=(action "goBack")}}Cancel{{/paper-button}}
+        {{#paper-button primary=true onClick=(action "saveGame" worldName description startingXp)}}Save{{/paper-button}}
+      {{/card.actions}}
+    {{/paper-card}}
+</div>

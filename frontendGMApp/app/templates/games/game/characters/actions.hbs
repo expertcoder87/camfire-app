@@ -1,0 +1,46 @@
+<div style="margin: 2%;">
+  <div class="layout-row flex">
+    <div class="flex-80 sc-title margin-30"> CHARACTER </div>
+  </div>
+  {{#paper-card as |card|}}
+        {{#card.title as |title|}}
+          {{#title.text as |text|}}
+            <div class="layout-row flex">
+              <div class="flex-80">
+                {{#text.headline}}<p>{{#paper-button primary=true onClick=(action "goBack")}} {{model.character.name}} {{/paper-button}} > {{#paper-button}}  Actions {{/paper-button}} </p>{{/text.headline}}
+              </div>
+              <div class="flex-20">
+                {{#paper-button primary=true onClick=(action "addAction" model.character)}} <p>Add New Actions</p> {{/paper-button}}
+              </div>
+            </div>
+          {{/title.text}}
+          {{/card.title}}
+          {{#card.content}}
+          {{#paper-select class="selectContext flex" itemLabelCallback=contextLabelCallback  value=selectedContext onChange=(action (mut selectedContext))}}
+            {{#each contextList as |context|}}
+              {{#paper-option value=context}}
+                {{context.name}}
+              {{/paper-option}}
+            {{/each}}
+          {{/paper-select}}
+          {{#if selectedContext}}
+            <div class="layout-column flex">
+              <div class="flex-80">
+                {{#paper-list}}
+                  {{#each actionList as |action|}}
+                      {{#paper-item class="coolPaperItem" onClick=(action "actionDetails" action.id)}}
+                        <div class="layout-row flex">
+                          <div class="flex-90"> <p>{{action.actionName}}</p></div>
+                          <div class="flex-10">  <p>{{action.level}}</p></div>
+                        </div>
+                      {{/paper-item}}
+                    {{paper-divider}}
+                  {{/each}}
+                {{/paper-list}}
+              </div>
+            </div>
+          {{/if}}
+        {{/card.content}}
+      {{/paper-card}}
+      {{outlet}}
+</div>

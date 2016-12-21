@@ -1,0 +1,22 @@
+<div class="quest-margin">
+  <div class="layout-row flex">
+    <div class="flex-80">
+      {{input type='text'
+        class='inputField'
+        placeholder='Enter new note'
+        value=newTitle
+        enter='addQuestItem'}}
+    </div>
+    <div>
+      {{#paper-button raised=true onClick=(action "addQuestItem" newTitle)}}Add{{/paper-button}}
+    </div>
+  </div>
+
+  {{#paper-content class="questItemTheme"}}
+    {{#each model.questItems as |item|}}
+      {{paper-divider class="questDivider"}}
+        {{quest-item item=item}}
+      {{paper-divider class="questDivider"}}
+    {{/each}}
+  {{/paper-content}}
+</div>

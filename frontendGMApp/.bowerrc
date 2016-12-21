@@ -1,0 +1,9 @@
+{
+  "directory": "bower_components",
+  "analytics": false,
+  "strict-ssl": false,
+  "https-proxy": "",
+  "registry": {
+      "search": ["http://bower.herokuapp.com"]
+      }
+}

@@ -1,0 +1,31 @@
+<div class="paperListItem changeInput">
+	{{#paper-list}}
+	<form {{action 'signup' target=ctrl on="submit"}}>
+		{{#paper-item}}
+			{{paper-input label="First Name" type="text" value=ctrl.firstname onChange=(action (mut ctrl.firstname)) icon="person" required=true }}
+		{{/paper-item}}
+	  {{#paper-item}}
+			{{paper-input label="Last Name" type="text" value=ctrl.lastname onChange=(action (mut ctrl.lastname)) icon="person" required=true }}
+		{{/paper-item}}
+	  {{#paper-item}}
+		  {{paper-input label="Email" type="email" value=ctrl.email onChange=(action (mut ctrl.email)) icon="email" required=true }}
+	  {{/paper-item}}
+	  {{#paper-item}}
+			{{paper-input label="Password" type="password" value=ctrl.password onChange=(action (mut ctrl.password)) icon="lock" required=true}}
+	  {{/paper-item}}
+		{{#paper-item}}
+			{{paper-input label="Re-Enter Password" type="password" value=ctrl.passwordCnfrm onChange=(action (mut ctrl.passwordCnfrm)) icon="lock" required=true}}
+		{{/paper-item}}
+	  {{#paper-item}}
+			<div class="loginButton">
+				{{#paper-button raised=true type="submit" onClick=(action "signup" target=ctrl)}}Sign up{{/paper-button}}
+			</div>
+		{{/paper-item}}
+	</form>
+		<center>
+			{{#paper-item class="alignCenter"}}
+				 <p class="text-white colored-link"> Already Registered?  {{#link-to "loginmodal"}}Login{{/link-to}}  </p>
+			{{/paper-item}}
+		</center>
+	{{/paper-list}}
+</div>

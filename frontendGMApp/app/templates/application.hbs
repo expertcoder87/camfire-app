@@ -1,0 +1,53 @@
+{{#if loading}}
+    {{#paper-dialog origin=dialogOrigin fullscreen=true clickOutsideToClose=true}}
+      <div class="loader">
+        {{paper-progress-circular diameter=150}}
+        <h3><center><p class=text-white>loading... </p></center></h3>
+      </div>
+    {{/paper-dialog}}
+{{/if}}
+
+<div class="setImage">
+  {{ember-notify class="custom-notify"}}
+
+ {{#if this.session.user}}
+     {{#paper-toolbar}}
+     	{{#paper-toolbar-tools}}
+    		<div class="flex">
+     			<img class="navBarLogo" src="/assets/images/nav_bar_logo.png"/>
+    		</div>
+        {{#unless whichNavOptions}}
+          {{#paper-button primary=true raised=true onClick=(action 'openGames')}}
+            Games
+          {{/paper-button}}
+        {{/unless}}
+    		{{#paper-button primary=true }}
+    			<a style="color: white;" {{action 'logout'}}>Logout</a>
+    		{{/paper-button}}
+    	{{/paper-toolbar-tools}}
+     {{/paper-toolbar}}
+     	{{#if whichNavOptions}}
+    		{{#paper-sidenav-container class="inner-sidenav"}}
+    		{{#paper-sidenav
+    				name="left"
+    				open=leftSideBarOpen
+    				onToggle=(action (mut leftSideBarOpen))
+    		}}
+    			{{#each navOptions as |option|}}
+    				{{#paper-content class="contentCustom"}}
+    					{{#paper-item onClick=(action "changeRoute" option.[1])}}{{option.[0]}}{{/paper-item}}
+    				{{/paper-content}}
+    				{{paper-divider}}
+    			{{/each}}
+    		{{/paper-sidenav}}
+    		<div class="flex-10 rightPane">
+    			{{outlet}}
+    		</div>
+    		{{/paper-sidenav-container}}
+    	{{else}}
+    			{{outlet}}
+    	{{/if}}
+  	{{else}}
+		{{outlet}}
+	{{/if}}
+</div>

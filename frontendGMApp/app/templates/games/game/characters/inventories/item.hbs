@@ -1,0 +1,145 @@
+  {{#paper-dialog  origin=dialogOrigin clickOutsideToClose=true}}
+    {{#paper-toolbar}}
+    <div class="md-toolbar-tools inventory-modal">
+      <h2>{{model.inventory_item.thing.name}} </h2>
+      <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "closeItemDetails") }}{{paper-icon icon="close"}}{{/paper-button}}
+    </div>
+    {{/paper-toolbar}}
+          {{#paper-card class="inventory-modal-card" as |card|}}
+            {{#card.content}}
+              <p>
+                {{model.inventory_item.thing.description}}
+              </p>
+              <br/>
+               Total Qty:  {{model.inventory_item.quantity}}
+            {{/card.content}}
+            <div class="alignCenter">
+              {{#card.actions class="inv-item-actions"}}
+                {{#paper-button primary=moveView onClick=(action "showView" "move")}}Move{{/paper-button}}
+                {{#paper-button primary=giveView onClick=(action "showView" "give")}}Give {{/paper-button}}
+                {{#paper-button primary=discardView onClick=(action "showView" "discard")}}Discard{{/paper-button}}
+              {{/card.actions}}
+            </div>
+          {{#if discardView}}
+            {{#card.content}}
+            <div class="layout-column flex">
+              <div class="flex-40">
+                <div class="layout-row flex">
+                  <div class="flex-30">
+                    {{#paper-item class="push-below"}} Quantity {{/paper-item}}
+                  </div>
+                  <div class="flex-70">
+                    {{paper-input
+                      value=discardQuantity
+                      placeholder="Enter Quantity"
+                      type="number"
+                      autofocus=true
+                      onChange=(action (mut discardQuantity))
+                      min="1"
+                      max=model.inventory_item.quantity
+                      errorMessages=(hash max="should be less or equal to the total quantity.")}}
+                  </div>
+                </div>
+              </div>
+              {{#card.actions}}
+                {{#paper-button raised=true onClick=(action "closeItemDetails")}} Cancel {{/paper-button}}
+                {{#paper-button raised=true onClick=(action 'discardItem' discardQuantity model.inventory_item)}} Save {{/paper-button}}
+              {{/card.actions}}
+            </div>
+            {{/card.content}}
+          {{/if}}
+          {{#if giveView}}
+            {{paper-divider}}
+              {{#card.content}}
+                <div class="layout-column flex">
+                  <div class="flex-40">
+                    <div class="layout-row flex">
+                      <div class="flex-30">
+                        {{#paper-item class="push-below"}} Quantity {{/paper-item}}
+                      </div>
+                      <div class="flex-70">
+                        {{paper-input
+                            value=giveQuantity
+                            type="number"
+                            min='1'
+                            onChange=(action (mut giveQuantity))
+                              max=model.inventory_item.quantity
+                              errorMessages=(hash
+                              max="should be less or equal to the total quantity."
+                              )}}
+                      </div>
+                  </div>
+                </div>
+                <div class="flex-40">
+                  <div class="layout-row flex">
+                    <div class="flex-30">
+                      {{#paper-item class="push-below"}} Give to {{/paper-item}}
+                    </div>
+                    <div class="flex-70">
+                      {{#paper-select class ="selectBox" itemLabelCallback=getItemLabelCallback value=character onChange=(action (mut character))}}
+                      {{#each characters as |character|}}
+                          {{#paper-option value=character}}
+                              {{character.name}}
+                          {{/paper-option}}
+                      {{/each}}
+                      {{/paper-select}}
+                    </div>
+                </div>
+                </div>
+                {{#card.actions}}
+                  {{#paper-button disabled=disabledButton1 raised=true onClick=(action "closeItemDetails")}} Cancel {{/paper-button}}
+                  {{#paper-button disabled=disabledButton1 raised=true onClick=(action "giveItem" model.inventory_item giveQuantity character)}} Save {{/paper-button}}
+
+                {{/card.actions}}
+              </div>
+              {{/card.content}}
+            {{/if}}
+          {{#if moveView}}
+            {{paper-divider class="dividerColor"}}
+              {{#card.content}}
+                <div class="layout-column flex">
+                  <div class="flex-40">
+                    <div class="layout-row flex">
+                      <div class="flex-30">
+                        {{#paper-item class="push-below"}} Quantity {{/paper-item}}
+                      </div>
+                      <div class="flex-70">
+                        {{paper-input
+                            type="number"
+                            value=moveQuantity
+                            min="1"
+                            onChange=(action (mut moveQuantity))
+                            max=model.inventory_item.quantity
+                            errorMessages=(hash
+                                max="should be less or equal to the total quantity."
+                                )
+                            }}
+                      </div>
+                  </div>
+                </div>
+                <div class="flex-40">
+                  <div class="layout-row flex">
+                    <div class="flex-30">
+                    {{#paper-item class="push-below"}} Move to {{/paper-item}}
+                    </div>
+                    <div class="flex-70">
+                      {{#paper-select class ="selectBox" itemLabelCallback=getItemLabelCallback value=inventorySelected onChange=(action (mut inventorySelected))}}
+                        {{#each characterInventories as |inventory|}}
+                            {{#paper-option value=inventory}}
+                                {{inventory.name}}
+                            {{/paper-option}}
+                        {{/each}}
+                      {{/paper-select}}
+                    </div>
+                </div>
+                </div>
+                {{#card.actions}}
+                  {{#paper-button disabled=disabledButton onClick=(action "closeItemDetails") raised=true}} Cancel {{/paper-button}}
+                  {{#paper-button disabled=disabledButton onClick=(action "moveItem" model.inventory_item moveQuantity inventorySelected) raised=true}} Save {{/paper-button}}
+                {{/card.actions}}
+              </div>
+              {{/card.content}}
+            {{/if}}
+          {{/paper-card}}
+{{/paper-dialog}}

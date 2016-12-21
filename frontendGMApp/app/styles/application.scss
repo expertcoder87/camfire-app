@@ -1,0 +1,89 @@
+@import 'variables';
+
+.setImage {
+  background-image: url('/assets/images/BG.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.textAreaWidth {
+
+  margin:2%;
+}
+
+@media only screen and (max-width: 1000px) {
+    .rightPane {
+      min-width: 75%;
+      position: absolute;
+      top: 10%; bottom: 0;
+      overflow: auto;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+.rightPane {
+  min-width: 75%;
+  position: absolute;
+  top: 10%; bottom: 0;
+  overflow: auto;
+  left:25%;
+  }
+}
+
+.loginView {
+	background-image:url('/assets/images/login_card.png');
+  background-size: 100% 100%;
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.alignCenter {
+
+  position: relative;
+  top:30%;
+  left: 25%;
+  width: 50%
+}
+
+
+.changeInput {
+
+  md-input-container {
+    .md-input {
+    border-color: white;
+    color:white;
+    }
+    md-icon{
+      color: white;
+    }
+    .md-input-focused {
+      border-color: white;
+    }
+
+    label{
+      color: white !important
+    }
+  }
+  button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+}
+
+#uploadImage{
+  cursor: pointer;
+  color: #ff9800;
+}

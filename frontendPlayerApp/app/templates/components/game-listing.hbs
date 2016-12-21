@@ -1,0 +1,18 @@
+<div>
+  {{#paper-content class="md-whiteframe-z1"}}
+  {{#paper-list}}
+    {{#each games as |game|}}
+      {{#paper-item class="md-3-line"}}
+          <img src='/assets/images/nova.jpg' class="md-avatar">
+          <div class="md-list-item-text">
+              <h3>{{game.world_name}}</h3>
+              <p>
+                {{game.description}}
+              </p>
+          </div>
+          {{paper-divider}}
+      {{/paper-item}}
+    {{/each}}
+  {{/paper-list}}
+{{/paper-content}}
+</div>

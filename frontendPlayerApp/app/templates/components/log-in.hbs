@@ -1,0 +1,37 @@
+	<div class="layout">
+		<div class= "flex-100">
+			 <div class="layout-align-start-centers">
+				 <div class="paperListItem changeInput">
+					 {{#paper-list}}
+					 <form {{action 'signup' target=ctrl on="submit"}}>
+					 		{{#paper-item class="login-item"}}
+								<img src="assets/images/Only_logo.png" class="logoCampfire"/>
+							{{/paper-item}}
+							{{#paper-item class="login-item"}}
+							 	{{paper-input label="Email" type="text" value=ctrl.emailLogin onChange=(action (mut ctrl.emailLogin)) icon="email"}}
+							{{/paper-item}}
+							{{#paper-item class="login-item"}}
+								{{paper-input label="Password" type="password" value=ctrl.passwordLogin onChange=(action (mut ctrl.passwordLogin)) icon="lock"}}
+							 {{/paper-item}}
+							{{#paper-item class="login-item"}}
+											{{#paper-button class="loginButton" type="submit" raised=true onClick=(action 'login' target=ctrl) }} Login {{/paper-button}}
+							 {{/paper-item}}
+						</form>
+
+						<div class="layout-column">
+							 <center>
+								 {{#paper-item class="login-item"}}
+								 		<p class="text-white colored-link"> Not Registered yet?  {{#link-to "signup"}}Register{{/link-to}}  </p>
+								 {{/paper-item}}
+						 	 </center>
+							 <center>
+							 	{{#paper-item class="login-item alignCenter"}}
+							 		<p class="text-white colored-link">  {{#link-to "forgot"}}Forgot Password{{/link-to}}  </p>
+							 	{{/paper-item}}
+						 		</center>
+						 </div>
+					{{/paper-list}}
+			</div>
+		</div>
+	</div>
+</div>

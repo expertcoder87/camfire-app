@@ -1,0 +1,82 @@
+<div class="listMargin">
+  <div class="layout-column">
+    <div class="flex-column change-character">
+  {{#link-to "characters" model.character.game.id}}choose a different character{{/link-to}}
+  </div>
+  <div class="flex-column chacaterButtons">
+  {{#paper-card as |card|}}
+    <div class=character-detail>
+
+    {{#card.title as |title|}}
+
+      {{#title.text class="character-title" as |text|}}
+
+        {{#text.headline}} {{model.character.name}} {{/text.headline}}
+
+      {{/title.text}}
+
+    {{/card.title}}
+
+    {{#card.content class="layout-row layout-align-space-between flex"}}
+      <div class="flex-50 marginClass">
+        {{#card.media}}
+          {{card.image  class="card-media character-details alignCenter" src=model.character.imageUrl}}
+        {{/card.media}}
+      </div>
+      <div class="flex-50">
+        <div class="layout-align-space-between flex stats-row">
+          <div class="flex-100">
+            {{#paper-item}}
+              <p> $ </p>
+              {{#paper-item}} {{model.character.availableCurrencyAmmount}} {{/paper-item}}
+            {{/paper-item}}
+          </div>
+          <div class="flex-100">
+            {{#paper-item}}
+              <p> AP </p>
+              {{#paper-item}} {{model.character.armourCurrentValue}}/{{model.character.armourCapValue}} {{/paper-item}}
+            {{/paper-item}}
+          </div>
+          <div class="flex-100">
+            {{#paper-item}}
+              <p> HP </p>
+              {{#paper-item}} {{model.character.hpCurrentValue}}/{{model.character.hpCapValue}} {{/paper-item}}
+            {{/paper-item}}
+          </div>
+          <div class="flex-100">
+            {{#paper-item}}
+              <p> FP </p>
+              {{#paper-item}} {{model.character.fp}} {{/paper-item}}
+            {{/paper-item}}
+          </div>
+          <div class="flex-100">
+            {{#paper-item}}
+              <p> XP </p>
+              {{#paper-item}} {{model.character.xp}} {{/paper-item}}
+            {{/paper-item}}
+          </div>
+        </div>
+      </div>
+    {{/card.content}}
+
+    {{#card.content class="layout-row layout-align-space-around"}}
+      {{#paper-button raised=true onClick=(action 'editDetails')}}Edit Details{{/paper-button}}
+      {{#paper-button raised=true onClick=(action 'editStats')}}Edit Stats{{/paper-button}}
+
+    {{/card.content}}
+
+    </div>
+
+  {{/paper-card}}
+
+    <div class="layout-row layout-align-space-around character-buttons">
+      {{#paper-button class="character-button" raised=true onClick=(action 'goToActions')}}Actions{{/paper-button}}
+      {{#paper-button class="character-button" raised=true onClick=(action 'inventoryAction')}}Inventory ({{model.equippedInventory.currentCapacity}}/{{model.equippedInventory.capacity}}){{/paper-button}}
+    </div>
+    <div class="layout-row layout-align-space-around character-buttons">
+      {{#paper-button raised=true class="character-button" onClick=(action 'goToQuests')}}Notes{{/paper-button}}
+      {{#paper-button raised=true class="character-button" onClick=(action 'goToGmScreen')}}GM Screen{{/paper-button}}
+    </div>
+    </div>
+  </div>
+</div>

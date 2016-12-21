@@ -1,0 +1,23 @@
+  <div class="layout-row flex">
+    <div class= "flex-85 sc-title"> THINGS </div>
+    {{#paper-button primary=true class="flex-15" onClick=(action "createThing")}} Create Thing {{/paper-button}}
+  </div>
+  {{#paper-list}}
+    {{#each model as |thing|}}
+      {{#paper-item onClick=(action "openThing" thing) class="coolPaperItem"}}
+        <div class="layout-column flex">
+          <div class="flex-50">
+            <div class="layout-row flex">
+                <h3 class="flex-90">{{thing.name}}</h3>
+            </div>
+          </div>
+          <div class="flex-50">
+            <p>
+              {{thing.description}}
+            </p>
+          </div>
+        </div>
+        <img src={{thing.imageUrl}} class="md-avatar">
+      {{/paper-item}}
+    {{/each}}
+  {{/paper-list}}

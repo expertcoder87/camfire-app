@@ -1,0 +1,23 @@
+
+{{#paper-sidenav-container class="inner-sidenav"}}
+ {{#paper-sidenav
+
+      name="left"
+      open=leftSideBarOpen
+      onToggle=(action (mut leftSideBarOpen))
+ }}
+ {{#paper-content class="contentCustom"}}
+   {{#paper-item onClick=(action "openWorld" model)}} WORLD{{/paper-item}}
+   {{#paper-item onClick=(action "openThings" model)}} THINGS{{/paper-item}}
+   {{#paper-item onClick=(action "openCharacters" model)}} CHARACTERS {{/paper-item}}
+   {{#paper-item onClick=(action "openStories" model)}} STORIES{{/paper-item}}
+   {{#paper-item onClick=(action "invitePlayers" model)}} INVITE PLAYERS {{/paper-item}}
+   {{#paper-item onClick=(action "openAttributes" model)}} ATTRIBUTES {{/paper-item}}
+   {{#paper-item onClick=(action "openSkills" model)}} SKILLS {{/paper-item}}
+
+ {{/paper-content}}
+  {{/paper-sidenav}}
+  <div class="rightPane">
+    {{outlet}}
+  </div>
+  {{/paper-sidenav-container}}

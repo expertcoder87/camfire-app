@@ -1,0 +1,64 @@
+{{#paper-dialog origin=dialogOrigin clickOutsideToClose=true}}
+  {{#paper-toolbar}}
+  <div class="md-toolbar-tools inventory-modal">
+    <h2>Add {{model.character.name}}'s Actions </h2>
+    <span class="flex"></span>
+  </div>
+  {{/paper-toolbar}}
+        {{#paper-card class="inventory-modal-card" as |card|}}
+          {{#card.content}}
+            {{actionSelected.description}}
+          {{/card.content}}
+          {{#card.content}}
+            <div class="layout-column flex">
+              <div class="flex-40">
+                <div class="layout-row flex">
+                  <div class="flex-50">
+                    {{#paper-item class="push-below"}} Action {{/paper-item}}
+                  </div>
+                  <div class="flex-50">
+                    {{#paper-select
+                          itemLabelCallback=actionLabelCallback
+                          value=actionSelected
+                          onChange=(action (mut actionSelected))
+                        }}
+                        {{#each options as |item|}}
+                          {{#paper-option value=item}}
+                            {{item.name}}
+                          {{/paper-option}}
+                        {{/each}}
+                      {{/paper-select}}
+                  </div>
+              </div>
+            </div>
+              <div class="flex-40">
+                <div class="layout-row flex">
+                  <div class="flex-50">
+                    {{#paper-item class="push-below"}} Level {{/paper-item}}
+                  </div>
+                  <div class="flex-50">
+                    {{#paper-select
+                          value=levelSelected
+                          onChange=(action (mut levelSelected))
+                        }}
+                        {{#each validlLevels as |item|}}
+                          {{#paper-option value=item}}
+                            {{item}}
+                          {{/paper-option}}
+                        {{/each}}
+                    {{/paper-select}}
+                  </div>
+              </div>
+            </div>
+          </div>
+              {{/card.content}}
+        {{#card.actions}}
+          {{#paper-button raised=true primary=true onClick=(action "goBack" model.character)}}
+            Cancel
+          {{/paper-button }}
+          {{#paper-button raised=true primary=true onClick=(action "saveAction" model.character levelSelected actionSelected)}}
+            Save
+          {{/paper-button }}
+        {{/card.actions}}
+        {{/paper-card}}
+{{/paper-dialog}}

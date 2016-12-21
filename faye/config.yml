@@ -1,0 +1,4 @@
+timeout: 3 #In minutes
+mount: '/faye'
+adapter: 'thin'
+mount_ip: '0.0.0.0'

@@ -1,0 +1,48 @@
+<div class="characterMargin">
+  <div class="layout-column flex">
+    <div class="flex-100">
+      <div class="layout-row flex">
+        <div class="flex-70">
+          {{#paper-select class="selectBox" itemLabelCallback=inventoryLabelCallback  value=inventorySelected onChange=(action (mut inventorySelected))}}
+            {{#each model as |inventory|}}
+              {{#paper-option value=inventory}}
+                {{inventory.name}}    ({{inventory.currentCapacity}} / {{inventory.capacity}})
+              {{/paper-option}}
+            {{/each}}
+          {{/paper-select}}
+        </div>
+        <div class="flex-30 marginRightClass">
+          {{#paper-button class="topPosition" raised=true onClick=(action "createStash")}} Add Stash{{/paper-button}}
+        </div>
+      </div>
+      {{#if inventorySelected}}
+        <div class="layout-column flex">
+          <div class="flex-20">
+            {{#paper-item class="headerColor"}}
+            <div class="layout-row flex">
+              <div class="flex-80">Items</div>
+              <div class="flex-20">Quantity</div>
+            </div>
+            {{/paper-item}}
+          </div>
+          <div class="flex-80">
+            {{#paper-list}}
+              {{#each inventoryItems as |item|}}
+                {{#paper-content class="md-whiteframe-z1"}}
+                  {{#paper-item onClick=(action "itemDetail" item.id)}}
+                    <div class="layout-row flex">
+                      <div class="flex-90">  {{item.thing.name}}</div>
+                      <div class="flex-10">  {{item.quantity}}</div>
+                    </div>
+                  {{/paper-item}}
+                {{/paper-content}}
+                {{paper-divider}}
+              {{/each}}
+            {{/paper-list}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+  {{outlet}}
+</div>

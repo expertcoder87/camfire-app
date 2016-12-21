@@ -1,0 +1,58 @@
+<div style="margin: 0%;">
+    <div class="layout-row flex">
+      <div class="flex-80 sc-title margin-30"> THINGS </div>
+    </div>
+    {{#paper-card as |card|}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}{{model.name}}{{/text.headline}}
+        {{/title.text}}
+        <div class="layout-column align-center flex alignFlexRight">
+          <div class="thingImgContainer">
+              {{title.media size="md" src=imageSource title="Phaser"}}
+          </div>
+            {{image-upload class="randomMargin" updateRecord=(action "updateRecord") linkName="Change Image"}}
+        </div>
+      {{/card.title}}
+      {{paper-divider}}
+
+      {{#card.content}}
+        <div class="layout-column flex">
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Description: </p>
+              {{textarea class="flex-80 textAreaWidth" rows="3" value=model.description}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Encumbrance: </p>
+              {{input class="flex-10 textAreaWidth" value=model.encumbrance type="number"}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Armour </p>
+                    {{input class="flex-10 textAreaWidth" value=model.armourCurrentValue type="number"}}
+                    {{input class="flex-10 textAreaWidth" value=model.armourCapValue type="number"}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Offensive Factor </p>
+              {{input class="flex-10 textAreaWidth" value=model.offensiveFactor type="number"}}
+            </div>
+          </div>
+        </div>
+      {{/card.content}}
+      {{#card.actions }}
+        {{#paper-button primary=true onClick=(action "askDelete")}}Delete{{/paper-button}}
+        {{#paper-button primary=true onClick=(action "goBack")}}Cancel{{/paper-button}}
+        {{#paper-button primary=true onClick=(action "saveThing")}}Save{{/paper-button}}
+      {{/card.actions}}
+    {{/paper-card}}
+</div>
+
+{{#if deleteDialog}}
+  {{partial "delete-dialog"}}
+{{/if}}

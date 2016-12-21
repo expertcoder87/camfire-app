@@ -1,0 +1,13 @@
+<div class="loginView">
+	<div class="alignCenter changeInput">
+		<center>
+			<form {{action 'login' target=ctrl on="submit"}}>
+				{{paper-input autofocus=true value=ctrl.emailLogin  label="email" onChange=(action (mut ctrl.emailLogin)) icon="email"}}
+				{{paper-input type="password" label="password" value=ctrl.passwordLogin onChange=(action (mut ctrl.passwordLogin)) icon="lock"}}
+				{{#paper-button type="submit" raised=true}} Login {{/paper-button}}
+			</form>
+			<p class="text-white colored-link"> Not Registered yet?  {{#link-to "signup"}}Register{{/link-to}}  </p>
+			<p class="text-white colored-link">  {{#link-to "forgot"}}Forgot Password{{/link-to}}  </p>
+		</center>
+	</div>
+</div>

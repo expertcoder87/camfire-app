@@ -1,0 +1,20 @@
+<div class="createStashDialogs">
+  {{#paper-dialog class="createStashDialogs" origin=dialogOrigin}}
+
+    {{#paper-toolbar}}
+      <div class="md-toolbar-tools inventory-modal">
+        <h2>Delete</h2>
+        <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "removeDeleteDialog") }}{{paper-icon icon="close"}}{{/paper-button}}
+      </div>
+    {{/paper-toolbar}}
+    {{#paper-dialog-content class="dialogContent inventory-modal-card"}}
+      <h2 class="md-title">Are you sure you want to delete this item?</h2>
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      {{#paper-button primary=true  onClick=(action "delete")}}Yes{{/paper-button}}
+      {{#paper-button primary=true  onClick=(action "removeDeleteDialog")}}No{{/paper-button}}
+      {{/paper-dialog-actions}}
+    {{/paper-dialog}}
+</div>

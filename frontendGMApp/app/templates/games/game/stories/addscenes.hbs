@@ -1,0 +1,43 @@
+<div style="margin: 2%;">
+    <div class="layout-row flex margin-30">
+      <div class= "flex-80 sc-title"> STORIES </div>
+    </div>
+    {{#paper-card as |card|}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#if model.name}}
+            {{#text.headline}}{{model.name}}{{/text.headline}}
+          {{else}}
+            {{#text.headline}}Create New Scene{{/text.headline}}
+          {{/if}}
+        {{/title.text}}
+        <div class="layout-column align-center flex alignFlexRight">
+            <img class="sceneImg" src={{imageSource}}/>
+            <div class="sceneButton">
+              {{image-upload class="randomMargin" updateRecord=(action "updateRecord")}}
+            </div>
+        </div>
+      {{/card.title}}
+      {{paper-divider}}
+      {{#card.content}}
+        <div class="layout-column flex">
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Name: </p>
+              {{input class="flex-40 textAreaWidth" value=model.name}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Secret story details: </p>
+              {{textarea class="flex-60 textAreaWidth" rows="5" value=model.secretStoryDetails}}
+            </div>
+          </div>
+        </div>
+      {{/card.content}}
+      {{#card.actions }}
+        {{#paper-button primary=true onClick=(action 'goBack')}}Cancel{{/paper-button}}
+        {{#paper-button primary=true onClick=(action 'saveRecord')}}Save{{/paper-button}}
+      {{/card.actions}}
+    {{/paper-card}}
+</div>

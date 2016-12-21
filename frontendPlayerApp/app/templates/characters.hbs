@@ -1,0 +1,42 @@
+<div class="listMargin" >
+  {{#if model.characters.length}}
+    {{#each model.characters as |character|}}
+      {{#paper-card as |card|}}
+        {{#card.title as |title|}}
+          {{#title.text as |text|}}
+            {{#text.headline}}{{character.name}}{{/text.headline}}
+          {{/title.text}}
+        {{/card.title}}
+        {{#card.content class="layout-row layout-align-space-between"}}
+        <div class='containerImg'>
+          <img class="alignImage characterImage" src={{character.imageUrl}} {{action "playCharacter" character.id}}/>
+        </div>
+        {{/card.content}}
+
+        {{#card.content class= "layout-column layout-align-space-between"}}
+          <p>{{character.description}}</p>
+        {{/card.content}}
+        {{#card.actions class="layout-column"}}
+          {{#paper-button class="gameButton" raised=true onClick=(action 'playCharacter' character.id)}} Play Character {{/paper-button}}
+        {{/card.actions}}
+      {{/paper-card}}
+    {{/each}}
+  {{else}}
+    {{#if showPrompt}}
+      {{#paper-dialog}}
+        {{#paper-dialog-content}}
+          <div style="max-width:800px;max-height:810px;">
+            <p>
+              Looks like there are no available characters to play in this game. Contact your Game Master and ask them to create a character for you. Coming soon: the ability to create your own character.
+            </p>
+          </div>
+        {{/paper-dialog-content}}
+        {{#paper-dialog-actions class="layout-row"}}
+          <span class="flex"></span>
+          {{#paper-button primary=true raised=true onClick=(action "closePrompt")}}Ok{{/paper-button}}
+        {{/paper-dialog-actions}}
+      {{/paper-dialog}}
+    {{/if}}
+  {{/if}}
+
+</div>

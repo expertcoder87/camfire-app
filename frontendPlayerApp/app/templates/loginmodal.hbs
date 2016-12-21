@@ -1,0 +1,7 @@
+<div class="sign-up-scroll">
+	{{#unless this.session.user}}
+		<div class="fade in">
+			<div >{{log-in ctrl=this}}</div>
+		</div>
+	{{/unless}}
+</div>

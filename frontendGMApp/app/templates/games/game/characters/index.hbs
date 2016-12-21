@@ -1,0 +1,25 @@
+<div class="layout-row flex">
+  <div class= "flex-80 sc-title"> CHARACTER </div>
+  {{#paper-button primary=true class="flex-20" onClick=(action "createCharacter")}} Create Character {{/paper-button}}
+</div>
+{{#paper-list}}
+  {{#each model as |character|}}
+    {{#paper-item  onClick=(action "openCharacter" character) class="coolPaperItem"}}
+        <div class="flex">
+          <div class="layout-column flex">
+            <div class="flex-20">
+              <div class="layout-row flex">
+                  <h3 class="flex-90">{{character.name}}</h3>
+              </div>
+            </div>
+            <div class="flex-80">
+              <p>
+                {{character.description}}
+              </p>
+            </div>
+        </div>
+        </div>
+        <img src={{character.imageUrl}} class="md-avatar">
+    {{/paper-item}}
+  {{/each}}
+{{/paper-list}}

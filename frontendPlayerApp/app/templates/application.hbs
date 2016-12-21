@@ -1,0 +1,23 @@
+{{! without contextual components }}
+<div class="setImage" id ="set">
+
+  {{#if this.session.user}}
+    <div class="layout-row flex">
+    {{#paper-toolbar class='fixed-position' }}
+      {{#paper-toolbar-tools}}
+        <div class="flex-15">
+          {{#if showBackButton}}
+            {{#paper-button iconButton=true onClick=(action "goBack")}}{{paper-icon "navigate-before" size=36}}{{/paper-button}}
+          {{/if}}
+
+        </div>
+        <div class="flex-75"><p class="centerHorizontal">{{navBarName}}</p></div>
+        <div class="flex-10">
+          <a {{action 'logout' target=this}}>{{paper-icon "power_settings_new" size=30}}</a>
+        </div>
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+  </div>
+  {{/if}}
+    {{outlet}}
+</div>

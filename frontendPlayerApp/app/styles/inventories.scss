@@ -1,0 +1,107 @@
+@import 'variables';
+
+.selectBox {
+
+  background-color: white;
+  margin-left: 5%;
+  width:70%;
+  color: black;
+
+}
+
+.inventory-modal{
+  background-color: $modal_dialog_background;
+  color: $orange_color;
+  md-icon{
+    color: $orange_color !important;
+  }
+}
+
+md-select-menu{
+  max-height: 25vh;
+  top: 15px;
+  position: relative;
+}
+
+.md-select-menu-container{
+  max-height: 25vh;
+}
+
+.md-select-value *:first-child{
+  width: 90%;
+}
+
+.push-below{
+  margin-top: 10%;
+}
+
+.inventory-modal-card{
+  box-shadow: none;
+  md-card-content{
+    color: black;
+    font-weight: normal;
+    }
+  .inv-item-actions{
+    color: black;
+
+    .md-button:not[disabled]:hovel{
+      background-color: $orange_color;
+    }
+  }
+  .md-input{
+    color: black !important;
+  }
+
+}
+
+.md-button.md-default-theme.md-primary, .md-button.md-primary{
+  background-color: $orange_color !important;
+  color: black;
+}
+
+button.topPosition {
+  top: 10px;
+
+}
+
+.marginRightClass
+{
+
+  margin-right: 5px;
+
+}
+md-dialog.themeInventory {
+
+  background-color: white;
+
+}
+
+.headerColor {
+
+  background-color: #751303;
+  color: white;
+}
+
+.dividerColor {
+  border-top-color: white;
+}
+
+.alignCenter {
+  margin-left: auto;
+    margin-right: auto
+}
+md-dialog.md-default-theme, md-dialog{
+  max-width:95%;
+
+}
+
+.dialogContent {
+
+  color: black;
+}
+
+#stash1, #stash2{
+  md-input-container{
+    margin: -4px !important;
+  }
+}

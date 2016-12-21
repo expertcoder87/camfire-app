@@ -1,0 +1,27 @@
+<div>
+  <div class="layout-row flex">
+    <div class= "flex-80 sc-title"> GAMES </div>
+    {{#paper-button primary=true class="flex-20" onClick=(action "createGame")}} Create Game {{/paper-button}}
+  </div>
+  {{#paper-list}}
+    {{#each model as |game|}}
+      {{#paper-item class="coolPaperItem" onClick=(action "openGame" game.id)}}
+        <div class="layout-column flex">
+          <div class="flex-50">
+            <div class="layout-row flex">
+                <h3 class="flex-90">{{game.worldName}}</h3>
+                {{#if game.canBeShared }}
+                  {{#paper-button primary=true onClick=(action "shareGame" game)}} Share {{/paper-button}}
+                {{/if}}
+            </div>
+          </div>
+          <div class="flex-50">
+            <p>
+              {{game.description}}
+            </p>
+          </div>
+        </div>
+      {{/paper-item}}
+    {{/each}}
+  {{/paper-list}}
+</div>

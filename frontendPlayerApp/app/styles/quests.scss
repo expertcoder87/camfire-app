@@ -1,0 +1,83 @@
+.inputField {
+    background: rgba(0,0,0,0.25);
+    padding: 4px;
+    border: none;
+    display: block;
+    margin-left: 2%;
+    width: 90%;
+    height: 50px;
+    box-shadow: inset 0 -2px 1px #212121;
+    color: white;
+}
+.editing .view {
+
+  display: none;
+
+}
+
+.quest-edit-button{
+  margin-right: 40px !important;
+}
+
+md-list-item.editing {
+    border-bottom: none;
+    padding: 0
+}
+
+label > * {
+    display: block;
+    pointer-events: none;
+    cursor: pointer;
+}
+
+.edit {
+    margin: 0;
+    width: 100%;
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: 1.4em;
+    outline: 0;
+    padding: 6px;
+    border: 1px solid #999;
+    box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, .2);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    display: none;
+}
+
+md-content.questItemTheme {
+
+  margin-top:10px;
+  background-color: rgba(0, 0, 0, 0.25);
+  color:white;
+  margin-left:2%;
+  margin-right:2%;
+  height: 88%;
+  overflow: auto;
+}
+
+.editing .edit {
+  display: block;
+}
+
+md-divider.questDivider {
+
+  border-top-width: 5px;
+
+}
+
+.task-completed{
+  text-decoration: line-through;
+}
+
+.quest-margin {
+
+  margin-top: 20%;
+  height: 88%;
+  position: relative;
+  overflow: hidden;
+
+}

@@ -1,0 +1,31 @@
+<div class="characterMargin">
+  {{#paper-select class="selectContext" itemLabelCallback=contextLabelCallback  value=selectedContext onChange=(action (mut selectedContext))}}
+    {{#each contextList as |context|}}
+      {{#paper-option value=context}}
+        {{context.name}}
+      {{/paper-option}}
+    {{/each}}
+  {{/paper-select}}
+
+  {{#if selectedContext}}
+    <div class="layout-column flex">
+      <div class="flex-80">
+        {{#paper-list}}
+          {{#each actionList as |action|}}
+            {{#paper-content class="md-whiteframe-z1"}}
+              {{#paper-item onClick=(action "actionDetails" action.id)}}
+                <div class="layout-row flex">
+                  <div class="flex-80">  {{action.actionName}}</div>
+                  <div class="flex-20">  {{action.level}}</div>
+                </div>
+              {{/paper-item}}
+            {{/paper-content}}
+            {{paper-divider}}
+          {{/each}}
+        {{/paper-list}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{outlet}}
+</div>

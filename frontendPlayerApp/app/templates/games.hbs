@@ -1,0 +1,39 @@
+<div class="listMargin" id ="game-screen">
+  {{#if model.length}}
+    {{#each model as |game|}}
+      {{#paper-card as |card|}}
+
+        {{#card.title as |title|}}
+          {{#title.text as |text|}}
+            {{#text.headline}}{{game.world_name}}{{/text.headline}}
+          {{/title.text}}
+        {{/card.title }}
+        {{card.image  class="xs" src=game.imageUrl}}
+        {{#card.content}}
+          <p>
+            {{game.description}}
+          </p>
+        {{/card.content}}
+        {{#card.actions class="layout-column"}}
+            {{#paper-button class="gameButton" raised=true onClick=(action 'playGame' game.id)}} Play {{/paper-button}}
+        {{/card.actions}}
+      {{/paper-card}}
+    {{/each}}
+  {{else}}
+    {{#if showPrompt}}
+      {{#paper-dialog}}
+        {{#paper-dialog-content}}
+          <div style="max-width:800px;max-height:810px;">
+            <p>
+              Looks like you have not been invited to any games. Contact your Game Master to get an invitation. Or, be your own Game Master. Create a game and invite your friends.
+            </p>
+          </div>
+        {{/paper-dialog-content}}
+        {{#paper-dialog-actions class="layout-row"}}
+          <span class="flex"></span>
+          {{#paper-button primary=true raised=true onClick=(action "closePrompt")}}Ok{{/paper-button}}
+        {{/paper-dialog-actions}}
+      {{/paper-dialog}}
+    {{/if}}
+  {{/if}}
+</div>

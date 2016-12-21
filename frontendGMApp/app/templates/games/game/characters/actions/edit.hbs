@@ -1,0 +1,34 @@
+<div class="listMargin">
+  {{#paper-dialog  origin=dialogOrigin clickOutsideToClose=true}}
+
+    {{#paper-toolbar}}
+    <div class="md-toolbar-tools inventory-modal">
+      <h2>{{model.actionName}} </h2>
+      <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "askDelete") }}{{paper-icon icon="delete"}}{{/paper-button}}
+        {{#paper-button iconButton=true onClick=(action "closeActionDetails" ) }}{{paper-icon icon="close"}}{{/paper-button}}
+    </div>
+    {{/paper-toolbar}}
+
+    {{#paper-card class="inventory-modal-card" as |card|}}
+      {{#card.content}}
+        <p>
+          {{model.description}}
+        </p>
+      {{/card.content}}
+      <div class="alignCenter">
+        {{#card.actions class="action-level-edit"}}
+          {{#paper-button iconButton=true onClick=(action "decreaseLevel")}}{{paper-icon "remove"}}{{/paper-button}}
+          {{#paper-button primary=true}}{{model.level}} {{/paper-button}}
+          {{#paper-button iconButton=true onClick=(action "increaseLevel")}}{{paper-icon "add"}}{{/paper-button}}
+        {{/card.actions}}
+      </div>
+    {{/paper-card}}
+{{/paper-dialog}}
+
+</div>
+
+
+{{#if deleteDialog}}
+  {{partial "delete-dialog"}}
+{{/if}}

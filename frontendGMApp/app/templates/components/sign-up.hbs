@@ -1,0 +1,14 @@
+<div class="loginView">
+	<div class="alignCenter changeInput">
+		<center>
+			<form {{action 'signup' target=ctrl on="submit"}}>
+				{{paper-input value=ctrl.email label="Email" onChange=(action (mut ctrl.email)) icon="email"}}
+				{{paper-input type="password" label="Password" value=ctrl.password onChange=(action (mut ctrl.password)) icon="lock"}}
+				{{paper-input type="password" label="Confirm password" value=ctrl.passwordCnfrm onChange=(action (mut ctrl.passwordCnfrm)) icon="lock"}}
+				{{#paper-button raised=true type="submit"}} Signup {{/paper-button}}
+			</form>
+				<p class="text-white colored-link"> Already Registered?  {{#link-to "login"}}Login{{/link-to}}  </p>
+		 </center>
+
+	</div>
+</div>

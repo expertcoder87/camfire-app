@@ -1,0 +1,19 @@
+{{#paper-item}}
+  <div class="layout-column flex view">
+    <div class="layout-row flex view">
+      <input type="checkbox" class="roundedOne flex-5" checked={{item.isComplete}} onchange={{action 'toggleCompleted'}}>
+      <div class="flex-70 longTap"  style="margin-left: 5px;" >
+        <label  class="flex-100" >{{item.description}}</label>
+
+      {{#paper-button  iconButton=true class="md-secondary quest-edit-button" onClick=(action "editNotes")}}
+        {{paper-icon "edit"}}
+      {{/paper-button}}
+
+      {{#paper-button class="md-secondary"  iconButton=true onClick=(action "removeQuestItem" item.id)}}
+        {{paper-icon "delete"}}
+      {{/paper-button}}
+    </div>
+  </div>
+</div>
+    {{input autofocus="autofocus" class="edit inputField" type="text" value=item.description focus-out='doneEditing'}}
+{{/paper-item}}

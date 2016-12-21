@@ -1,0 +1,31 @@
+<div class="createStashDialogs accelerated">
+  {{#paper-dialog class="createStashDialogs"   origin=dialogOrigin}}
+
+    {{#paper-toolbar}}
+      <div class="md-toolbar-tools inventory-modal">
+        <h2>Create Stash</h2>
+        <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "closeCreateStash") }}{{paper-icon icon="close"}}{{/paper-button}}
+      </div>
+    {{/paper-toolbar}}
+
+    <div class="error-panel">
+      {{errorMessage}}
+    </div>
+
+    {{#paper-dialog-content class="dialogContent alignCenter inventory-modal-card"}}
+      {{campfire-input id= "stash1" class="stash-modal" placeholder="Stash name" autofocus=true value=stashName onChange=(action (mut stashName))}}
+      {{campfire-input id= "stash2" class="stash-modal"
+        max=999
+        errorMessages=(hash max="Should be less than or equal to 999")
+        type="number"
+        placeholder="Capacity"
+        value=capacity
+        onChange=(action (mut capacity))}}
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row alignCenter"}}
+      {{#paper-button primary=true  onClick=(action "saveStash" capacity stashName character) disabled=isDisabled}}Save{{/paper-button}}
+      {{/paper-dialog-actions}}
+    {{/paper-dialog}}
+</div>

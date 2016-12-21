@@ -1,0 +1,7 @@
+<div class="sign-up-scroll">
+  <div>{{sign-up ctrl=this}}</div>
+  {{#if isShowingModal}}
+      {{paper-progress-linear warn=true value=determinateValue bufferValue=determinateValue2}}
+  {{/if}}
+  {{outlet}}
+</div>

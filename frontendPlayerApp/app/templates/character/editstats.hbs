@@ -1,0 +1,75 @@
+<div class="listMargin accelerated">
+  {{#paper-dialog fullscreen=fullscreen origin=dialogOrigin}}
+    {{#paper-toolbar class="popup-title"}}
+      <div class="md-toolbar-tools">
+        <h2>{{model.name}}</h2>
+      </div>
+    {{/paper-toolbar}}
+
+    {{#paper-dialog-content class="character-stats-edit"}}
+      <div class="error-panel">
+        {{#each errorMessages as |message|}}
+          <p>{{message}} </p>
+        {{/each}}
+      </div>
+
+      <div class="layout-row flex">
+        <p class="flex-80">Currency</p>
+        {{campfire-input class="flex-20"
+          type="number"
+          value=model.availableCurrencyAmmount
+          onChange=(action (mut model.availableCurrencyAmmount))}}
+      </div>
+
+      <div class="layout-row flex">
+        <p class="flex-60">Armour Points</p>
+        {{campfire-input class="inputWidth flex-20" type="number"
+          value=model.armourCurrentValue onChange=(action (mut model.armourCurrentValue))}}
+        <p class="space-around">/</p>
+        {{campfire-input class="inputWidth flex-20"
+          type="number"
+          value=model.armourCapValue
+          onChange=(action (mut model.armourCapValue))}}
+      </div>
+
+      <div class="layout-row flex">
+        <p class="flex-60">Health Points</p>
+        {{campfire-input class="inputWidth flex-20" type="number"
+          value=model.hpCurrentValue
+          onChange=(action (mut model.hpCurrentValue))}}
+        <p class="space-around">/</p>
+        {{campfire-input class="inputWidth flex-20"
+          type="number"
+          value=model.hpCapValue
+          onChange=(action (mut model.hpCapValue))}}
+      </div>
+
+      <div class="layout-row flex">
+        <p class="flex-80"> Fudge Points </p>
+        {{campfire-input class="flex-20"
+          type="number"
+          value=model.fp
+          onChange=(action (mut model.fp))}}
+      </div>
+
+      <div class="layout-row flex">
+        <p class="flex-80"> Experience Points </p>
+        {{paper-input class="flex-20"
+          type="number"
+          value=model.xp
+          onChange=(action (mut model.xp))}}
+      </div>
+
+    {{/paper-dialog-content}}
+      {{#paper-dialog-actions class="layout-row"}}
+        <span class="flex"></span>
+        {{#paper-button
+          disabled=buttonDisable
+          primary=true
+          onClick=(action 'saveCharacter')}}
+            Save
+        {{/paper-button}}
+        {{#paper-button primary=true onClick=(action 'exitEdit')}}Cancel{{/paper-button}}
+      {{/paper-dialog-actions}}
+  {{/paper-dialog}}
+</div>

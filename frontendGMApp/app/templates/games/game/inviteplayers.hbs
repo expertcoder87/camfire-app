@@ -1,0 +1,54 @@
+<div style="margin: 5%;">
+    {{#paper-card as |card|}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+            {{#text.headline}}Invite Users to Your Game{{/text.headline}}
+        {{/title.text}}
+      {{/card.title}}
+      {{paper-divider}}
+      {{#card.content}}
+        <div class="layout-row alignCenter flex">
+          <p class="flex-20"> Email</p>
+          {{input class="flex-50 textAreaWidth" value=email type="email"}}
+          {{#paper-button flex=30 primary=true onClick=(action 'invitePlayer' email) }}Invite User{{/paper-button}}
+        </div>
+      {{/card.content}}
+      {{#card.content}}
+          {{#paper-list }}
+          {{#each model.invitations as |invitation|}}
+            {{#paper-item class="coolPaperItem"}}
+                <div class="layout-row flex">
+                  <div class="flex-80"> <p>{{invitation.email}}</p></div>
+                  <div class="flex-20">  <p>{{invitation.status}}
+                   {{#paper-button primary=true iconButton=true onClick=(action "askDelete" invitation) }}{{paper-icon icon="close"}}{{/paper-button}} </p> </div>
+                </div>
+            {{/paper-item}}
+            {{/each}}
+          {{/paper-list}}
+      {{/card.content}}
+    {{/paper-card}}
+</div>
+
+
+{{#if deleteDialog}}
+  <div class="createStashDialogs">
+    {{#paper-dialog class="createStashDialogs" origin=dialogOrigin}}
+
+      {{#paper-toolbar}}
+        <div class="md-toolbar-tools inventory-modal">
+          <h2>Delete</h2>
+          <span class="flex"></span>
+          {{#paper-button iconButton=true onClick=(action "removeDeleteDialog") }}{{paper-icon icon="close"}}{{/paper-button}}
+        </div>
+      {{/paper-toolbar}}
+      {{#paper-dialog-content class="dialogContent inventory-modal-card"}}
+        <h2 class="md-title">Are you sure you want to revoke this user's invitation?</h2>
+      {{/paper-dialog-content}}
+
+      {{#paper-dialog-actions class="layout-row"}}
+        {{#paper-button primary=true  onClick=(action "delete" invitation)}}Yes{{/paper-button}}
+        {{#paper-button primary=true  onClick=(action "removeDeleteDialog")}}No{{/paper-button}}
+        {{/paper-dialog-actions}}
+      {{/paper-dialog}}
+  </div>
+{{/if}}

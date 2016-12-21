@@ -1,0 +1,21 @@
+{{#paper-dialog class="modal-popup"}}
+  {{#paper-toolbar class="popup-title"}}
+    <div class="md-toolbar-tools">
+      <h2>{{character.name}}</h2>
+    </div>
+  {{/paper-toolbar}}
+  {{#paper-dialog-content class="details-dialog"}}
+    <div class=details-dialog>
+    {{#paper-form as |form|}}
+      {{textarea rows=8 wrap=hard maxlength=500 value=description}}
+      {{paper-input class="character-detail-popup" flex=200 label="Gifts" value=characterGifts onChange=(action (mut characterGifts))}}
+      {{paper-input class="character-detail-popup" flex=200 label="Faults" value=characterFaults onChange=(action (mut characterFaults))}}
+    {{/paper-form}}
+    </div>
+  {{/paper-dialog-content}}
+  {{#paper-dialog-actions class="layout-row details-dialog"}}
+    <span class="flex"></span>
+    {{#paper-button primary=true onClick=(action 'saveCharacter' description characterGifts characterFaults)}}Save{{/paper-button}}
+    {{#paper-button primary=true onClick=(action 'closeEdit')}}Cancel{{/paper-button}}
+  {{/paper-dialog-actions}}
+{{/paper-dialog}}

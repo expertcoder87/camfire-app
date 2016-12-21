@@ -1,0 +1,105 @@
+<div style="margin: 2%;">
+      <div class="layout-row flex">
+        <div class="flex-80 sc-title margin-30"> CHARACTER </div>
+      </div>
+      {{#paper-card as |card|}}
+        <div class="layout-row flex">
+          <div class="flex-85">
+            <p>{{#paper-button primary=true onClick=(action "goBack")}} {{model.character.name}} {{/paper-button}} > {{#paper-button}}  Inventories{{/paper-button}} </p>
+          </div>
+        </div>
+        {{#card.title as |title|}}
+          {{#title.text as |text|}}
+              {{#if inventorySelected}}
+                <div class="layout-row flex">
+                  <div class="flex-70">
+                    {{#text.headline}}<p>{{inventorySelected.name}}</p>{{/text.headline}}
+                  </div>
+                  <div class="flex-30">
+
+                  </div>
+                </div>
+              {{/if}}
+          {{/title.text}}
+          {{#paper-select
+                itemLabelCallback=inventoryLabelCallback
+                value=inventorySelected
+                onChange=(action (mut inventorySelected))
+              }}
+              {{#each model.inventories as |inventory|}}
+                {{#paper-option value=inventory}}
+                  {{inventory.name}}
+                {{/paper-option}}
+              {{/each}}
+            {{/paper-select}}
+
+        {{/card.title}}
+        {{#card.content}}
+          {{#card.actions}}
+          {{#if inventorySelected}}
+            {{#paper-button primary=true onClick=(action "addInventoryItems" inventorySelected)}} Add Items{{/paper-button}}
+          {{/if}}
+          {{#if inventorySelected}}
+            {{#unless (eq inventorySelected.name "Equipped")}}
+              {{#paper-button primary=true onClick=(action "askDelete")}} Delete Stash{{/paper-button}}
+            {{/unless}}
+          {{/if}}
+
+            {{#paper-button primary=true onClick=(action "addNewStash" model.character)}} Create Stash{{/paper-button}}
+         {{/card.actions}}
+          {{#if inventorySelected }}
+            <div class="layout-column flex ">
+              <div class="flex-20">
+                {{#paper-item class="headerColor"}}
+                <div class="layout-row flex">
+                  <div class="flex-85"><p>Items</p></div>
+                  <div class="flex-15"><p> Quantity</p></div>
+                </div>
+                {{/paper-item}}
+              </div>
+              <div class="flex-80 itemsList">
+                {{#paper-list}}
+                  {{#each inventoryItems as |item|}}
+                    {{#paper-content class="md-whiteframe-z1"}}
+                      {{#paper-item onClick=(action "itemDetail" item.id)}}
+                        <div class="layout-row flex">
+                          <div class="flex-90">  {{item.thing.name}}</div>
+                          <div class="flex-10">  {{item.quantity}}</div>
+                        </div>
+                      {{/paper-item}}
+                    {{/paper-content}}
+                    {{paper-divider}}
+                  {{/each}}
+                {{/paper-list}}
+              </div>
+            </div>
+          {{/if}}
+        {{/card.content}}
+
+      {{/paper-card}}
+      {{outlet}}
+</div>
+
+
+{{#if deleteDialog}}
+  <div class="createStashDialogs">
+    {{#paper-dialog class="createStashDialogs" origin=dialogOrigin}}
+
+      {{#paper-toolbar}}
+        <div class="md-toolbar-tools inventory-modal">
+          <h2>Delete</h2>
+          <span class="flex"></span>
+          {{#paper-button iconButton=true onClick=(action "removeDeleteDialog") }}{{paper-icon icon="close"}}{{/paper-button}}
+        </div>
+      {{/paper-toolbar}}
+      {{#paper-dialog-content class="dialogContent inventory-modal-card"}}
+        <h2 class="md-title">Are you sure you want to delete this item?</h2>
+      {{/paper-dialog-content}}
+
+      {{#paper-dialog-actions class="layout-row"}}
+        {{#paper-button primary=true  onClick=(action "delete" inventorySelected)}}Yes{{/paper-button}}
+        {{#paper-button primary=true  onClick=(action "removeDeleteDialog")}}No{{/paper-button}}
+        {{/paper-dialog-actions}}
+      {{/paper-dialog}}
+  </div>
+{{/if}}

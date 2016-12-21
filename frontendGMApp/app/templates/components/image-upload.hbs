@@ -1,0 +1,8 @@
+{{#file-upload queue=(file-queue for="photos" accept="image/*"
+                              onfileadd=(action "uploadImage"))}}
+    {{#if linkName}}
+      <a id="uploadImage" tabindex=0> {{linkName}} </a>
+    {{else}}
+      <a id="uploadImage" tabindex=0> Add Image </a>
+    {{/if}}
+{{/file-upload}}

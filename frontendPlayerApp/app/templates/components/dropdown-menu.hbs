@@ -1,0 +1,20 @@
+{{#paper-menu as |menu|}}
+    {{#paper-button onClick=(action "toggleMenu" target=menu) iconButton=true}}{{paper-icon "more_vert" class="md-menu-origin"}}{{/paper-button}}
+  {{else}}
+    {{#each items as |item|}}
+      {{#paper-menu-item}}
+        {{paper-icon item.icon class="md-menu-align-target"}}
+        <span>{{item.title}}</span>
+      {{/paper-menu-item}}
+    {{/each}}
+
+    {{#paper-menu-item disabled=false}}
+          <a {{action 'logout' target=ctrl}}>Logout</a>
+    {{/paper-menu-item}}
+    {{paper-divider}}
+    {{#each items as |item|}}
+      {{#paper-menu-item}}
+        {{paper-icon item.icon class="md-menu-align-target"}} {{item.title}}
+      {{/paper-menu-item}}
+    {{/each}}
+  {{/paper-menu}}

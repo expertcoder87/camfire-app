@@ -1,0 +1,35 @@
+<div style="margin: 2%;">
+    <div class="layout-row flex margin-30">
+      <div class= "flex-80 sc-title"> ATTRIBUTES </div>
+    </div>
+    {{#paper-card as |card|}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}{{model.name}}{{/text.headline}}
+        {{/title.text}}
+      {{/card.title}}
+      {{paper-divider}}
+
+      {{#card.content}}
+        <div class="layout-column flex">
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Description: </p>
+              {{textarea class="flex-80 textAreaWidth" rows="3" value=model.description}}
+            </div>
+          </div>
+        </div>
+      {{/card.content}}
+
+      {{#card.actions }}
+        {{#paper-button primary=true onClick=(action "askDelete")}}Delete{{/paper-button}}
+        {{#paper-button primary=true onClick=(action "goBack")}}Cancel{{/paper-button}}
+        {{#paper-button primary=true onClick=(action "saveAttribute")}}Save{{/paper-button}}
+      {{/card.actions}}
+    {{/paper-card}}
+</div>
+
+
+{{#if deleteDialog}}
+  {{partial "delete-dialog"}}
+{{/if}}

@@ -1,0 +1,70 @@
+@import 'variables';
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+      background-color:black;
+}
+
+.setImage {
+  background-image: url('../assets/images/BG.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.md-progress-linear {
+
+  bottom:0;
+  position: absolute;
+
+}
+
+.md-open-menu-container.md-active {
+  height: initial;
+}
+
+.sweet-alert h2 {
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.changeInput {
+  md-input-container {
+    .md-input {
+      border-color: white;
+      color:white;
+    }
+    md-icon{
+      color: white;
+    }
+    .md-input-focused {
+      border-color: white;
+    }
+    label{
+      color: white !important
+    }
+  }
+  button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+}
+
+p.colored-link{
+  a{
+    color: white;
+  }
+}
+
+p.text-white{
+    color: white;
+}
+
+p.centerHorizontal {
+  text-align: center;
+}

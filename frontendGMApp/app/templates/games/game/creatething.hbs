@@ -1,0 +1,58 @@
+<div style="margin: 5%;">
+    {{#paper-card as |card|}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#if model.name}}
+            {{#text.headline}}{{model.name}}{{/text.headline}}
+          {{else}}
+            {{#text.headline}}Create Your Game's Thing{{/text.headline}}
+            {{#text.subhead}} Things like Phaser, Sword, Rifle. {{/text.subhead}}
+          {{/if}}
+        {{/title.text}}
+        <div class="layout-column align-center flex alignFlexRight">
+            {{title.media size="md" src=imageSource title="Thing's Image"}}
+            {{image-upload class="randomMargin" updateRecord=(action "updateRecord")}}
+        </div>
+      {{/card.title}}
+      {{paper-divider}}
+      {{#card.content}}
+        <div class="layout-column flex">
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Name: </p>
+              {{input class="flex-40 textAreaWidth" value=model.name}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Description: </p>
+              {{textarea class="flex-60 textAreaWidth" rows="3" value=model.description}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Encumbrance: </p>
+              {{input class="flex-10 textAreaWidth" value=model.encumbrance min=0 type="number"}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Armour </p>
+                    {{input class="flex-10 textAreaWidth" value=model.armourCurrentValue min=0 type="number"}}
+                    {{input class="flex-10 textAreaWidth" value=model.armourCapValue min=0 type="number"}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Offensive Factor </p>
+              {{input class="flex-10 textAreaWidth" value=model.offensiveFactor min=0 type="number"}}
+            </div>
+          </div>
+        </div>
+      {{/card.content}}
+      {{#card.actions }}
+        {{#paper-button primary=true onClick=(action 'goBack')}}Cancel{{/paper-button}}
+        {{#paper-button primary=true onClick=(action 'saveRecord')}}Save{{/paper-button}}
+      {{/card.actions}}
+    {{/paper-card}}
+</div>

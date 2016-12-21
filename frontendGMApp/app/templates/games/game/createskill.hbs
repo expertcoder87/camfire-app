@@ -1,0 +1,55 @@
+<div style="margin: 5%;">
+    {{#paper-card as |card|}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#if model.name}}
+            {{#text.headline}}{{model.name}}{{/text.headline}}
+          {{else}}
+            {{#text.headline}}Create Your Game's Skill{{/text.headline}}
+          {{/if}}
+        {{/title.text}}
+      {{/card.title}}
+      {{paper-divider}}
+      {{#card.content}}
+        <div class="layout-column flex">
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Name: </p>
+              {{input class="flex-40 textAreaWidth" value=model.name}}
+            </div>
+          </div>
+
+          <div class="layout-column flex">
+            <div class="flex-10">
+              <div class="layout-row flex">
+                <p class="flex-20"> Context: </p>
+                <div class="flex-40 textAreaWidth">
+                  {{ember-selectize
+                    content=contexts
+                    optionValuePath='content.id'
+                    optionLabelPath= 'content.name'
+                    searchField= 'content.name'
+                    selection=model.context
+                    placeholder="Select Context"
+                    create-item= "createContext"
+                  }}
+              </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Description: </p>
+              {{textarea class="flex-60 textAreaWidth" rows="3" value=model.description}}
+            </div>
+          </div>
+
+        </div>
+      {{/card.content}}
+      {{#card.actions }}
+        {{#paper-button primary=true onClick=(action 'goBack')}}Cancel{{/paper-button}}
+        {{#paper-button primary=true onClick=(action 'saveRecord')}}Save{{/paper-button}}
+      {{/card.actions}}
+    {{/paper-card}}
+</div>

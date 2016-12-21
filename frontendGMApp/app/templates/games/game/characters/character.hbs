@@ -1,0 +1,94 @@
+<div style="margin: 2%;">
+    <div class="layout-row flex">
+      <div class="flex-80 sc-title margin-30"> CHARACTER </div>
+    </div>
+    {{#paper-card as |card|}}
+
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}{{model.name}}{{/text.headline}}
+          {{#text.subhead}}{{model.characterType}}{{/text.subhead}}
+        {{/title.text}}
+        {{#paper-button primary=true onClick=(action "openInventory" model)}} Inventory {{/paper-button}}
+        {{#paper-button flex=20 primary=true onClick=(action "openActions" model)}} Actions {{/paper-button}}
+      {{/card.title}}
+      {{paper-divider}}
+      {{#card.content}}
+      <div class="layout-row flex">
+        <div class="flex-70">
+        <div class="layout-column flex">
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Type: </p>
+              <p>{{model.characterType}} </p>
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Description: </p>
+              {{textarea class="flex-80 textAreaWidth" rows="3" value=model.description}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> currency($): </p>
+              {{input class="flex-15 textAreaWidth" value=model.availableCurrencyAmmount type="number"}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Armour </p>
+                {{input class="flex-10 textAreaWidth" value=model.armourCurrentValue type="number"}}
+                {{input class="flex-10 textAreaWidth" value=model.armourCapValue type="number"}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Health Point </p>
+                {{input class="flex-10 textAreaWidth" value=model.hpCurrentValue type="number"}}
+                {{input class="flex-10 textAreaWidth" value=model.hpCapValue type="number"}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> XP </p>
+              {{input class="flex-40 textAreaWidth" value=model.xp type="number"}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Fudge Points </p>
+              {{input class="flex-40 textAreaWidth" value=model.fp type="number"}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Gifts </p>
+                {{input class="flex-40 textAreaWidth" value=model.gifts type="text"}}
+            </div>
+          </div>
+          <div class="flex-10">
+            <div class="layout-row flex">
+              <p class="flex-20"> Faults </p>
+              {{input class="flex-40 textAreaWidth" value=model.faults type="text"}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-30 flexClass">
+        <div class="layout-column flex">
+          <div class="flex-80 containerImg">
+            <img class=" characterImg " src={{imageSource}}/>
+          </div>
+          {{image-upload class="flex-20 randomMarginLeft" updateRecord=(action "updateRecord") linkName="Change Image"}}
+        </div>
+
+      </div>
+    </div>
+      {{/card.content}}
+      {{#card.actions}}
+        {{#paper-button primary=true onClick=(action 'goBack')}} Cancel {{/paper-button}}
+        {{#paper-button primary=true onClick=(action 'saveCharacter')}} Save {{/paper-button}}
+      {{/card.actions}}
+    {{/paper-card}}
+</div>

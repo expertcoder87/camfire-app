@@ -1,0 +1,97 @@
+body > .ember-view {
+    height: 100%;
+}
+
+.flexClass {
+  display: flex;
+  align-items: center;
+}
+
+md-card{
+
+  background-color: rgba(0, 0, 0, 0.51);
+  color: white;
+}
+
+.containerImg{
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:auto;
+  margin-bottom:auto;
+  height:400px;
+  display: flex;
+  align-items: center;
+
+}
+
+md-card {
+  .whiteColor {
+    background-color: white;
+  }
+}
+
+.clearfix {
+
+  background-color: white;
+}
+.randomMargin{
+
+  margin-right:15px;
+
+}
+
+.md-toolbar-tools {
+  background-color:rgb(10, 10, 38);
+}
+
+.navBarLogo{
+
+    width: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+
+}
+
+md-sidenav {
+  background-color: rgba(0, 0, 0, 0.17);
+  width:20%;
+}
+md-content.contentCustom {
+
+  color: white;
+  background-color: rgba(0, 0, 0, 0.17);
+}
+
+
+p.text-white {
+  	color:white !important;
+  }
+
+p.colored-link{
+    a{
+      color: white;
+    }
+}
+
+.sc-title{
+  text-align: center;
+  color:white !important;
+}
+
+p.text-byline{
+   margin-top:5px;
+   font-size:14px;
+}
+
+.inner-sidenav{
+  height: 100%;
+}
+
+.margin-30{
+  margin-bottom: 30px;
+}
+
+.loader {
+  margin:auto;
+}

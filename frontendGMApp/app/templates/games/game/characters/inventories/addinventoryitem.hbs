@@ -1,0 +1,49 @@
+{{#paper-dialog origin=dialogOrigin clickOutsideToClose=true}}
+  {{#paper-toolbar}}
+  <div class="md-toolbar-tools inventory-modal">
+    {{#if inventorySelected}}
+      <h2>Add {{inventorySelected.name}} </h2>
+    {{else}}
+      <h2> Select Inventory</h2>
+    {{/if}}
+    <span class="flex"></span>
+  </div>
+  {{/paper-toolbar}}
+        {{#paper-card class="inventory-modal-card" as |card|}}
+          {{#card.content}}
+            <div class="layout-column flex">
+              <div class="flex-40">
+                <div class="layout-row flex">
+                  <div class="flex-50">
+                    {{#paper-item class="push-below"}} <p>Items</p> {{/paper-item}}
+                  </div>
+                    {{#paper-select
+                          itemLabelCallback=itemLabelCallback
+                          value=itemSelected
+                          onChange=(action (mut itemSelected))
+                        }}
+                        {{#each model.things as |item|}}
+                          {{#paper-option value=item}}
+                            {{item.name}}
+                          {{/paper-option}}
+                        {{/each}}
+                      {{/paper-select}}
+              </div>
+            </div>
+              <div class="flex-40">
+                <div class="layout-row flex">
+                  <div class="flex-50">
+                    {{#paper-item class="push-below"}} <p>Quantity </p>{{/paper-item}}
+                  </div>
+                  {{input class="flex-50 textAreaWidth" value=itemQuantity type="number"}}
+              </div>
+            </div>
+          </div>
+              {{#card.actions}}
+                {{#paper-button primary=true onClick=(action "goBack")}} Cancel {{/paper-button}}
+                {{#paper-button primary=true onClick=(action "addItem" itemSelected itemQuantity)}} Save {{/paper-button}}
+              {{/card.actions}}
+              {{/card.content}}
+
+        {{/paper-card}}
+{{/paper-dialog}}

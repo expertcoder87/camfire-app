@@ -1,0 +1,34 @@
+.alignFlexRight{
+
+  display: flex;
+  align-items: flex-end;
+
+}
+
+.mber-notify-default {
+
+  color:yellow;
+
+}
+
+
+
+
+.thingImgContainer {
+ height: 120px;
+ display: flex;
+ align-items: center;
+ margin-right: 3%;
+}
+
+md-card md-card-title md-card-title-media .md-media-md {
+
+  height: auto;
+  width: auto;
+  max-height: 112px;
+  max-width: 112px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
