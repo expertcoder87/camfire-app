@@ -1,0 +1,38 @@
+# this file should have indent of 2 spaces
+
+# general/default configuration
+defaults: &defaults
+  host:
+    url: 'boilerplate.navyuginfo.com'
+  mailer:
+    enable_starttls_auto: true
+    address: 'smtp.gmail.com'
+    port: '587'
+    authentication: 'plain'
+    username: 'campfiretabletop@gmail.com'
+    password: 'new life'
+    recipient: 'info@navyuginfo.com'
+  faye:
+    url: 'http://0.0.0.0:9292/faye'
+
+# Environment Specific Configuration
+development:
+  <<: *defaults
+  host:
+    url: 'http://localhost:3000'
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  host:
+    url: 'http://52.27.156.129:3000'
+  mailer:
+    enable_starttls_auto: true
+    address: 'smtp.gmail.com'
+    port: '587'
+    authentication: 'plain'
+    username: 'campfiretabletop@gmail.com'
+    password: 'new life'
+    recipient: 'info@navyuginfo.com'
