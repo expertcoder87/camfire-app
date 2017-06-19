@@ -37,7 +37,7 @@ gem 'omniauth'
 gem 'omniauth-linkedin'
 gem 'amoeba'
 
-
+gem 'rack-cors', :require => 'rack/cors'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -46,7 +46,7 @@ gem 'turbolinks'
 
 group :development, :test do
 # rspec for testing
-  gem 'byebug'
+  gem 'pry-byebug'
   gem 'rspec'
   gem "rspec-rails"
   gem "factory_girl_rails", '~>4.2.1'

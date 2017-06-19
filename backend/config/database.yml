@@ -6,7 +6,7 @@ default: &default
   encoding: unicode
   pool: 5
   username: postgres
-  password: postgres
+  password: 12345678
 
 development:
   <<: *default

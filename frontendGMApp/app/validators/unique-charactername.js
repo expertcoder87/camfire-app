@@ -10,7 +10,7 @@ const UniqueCharactername = BaseValidator.extend({
         let message = "Character Name already exists.";
         return message;
       } else {
-        return true;
+        return attribute;
       }
     });
   }

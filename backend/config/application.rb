@@ -23,5 +23,12 @@ module Backend
 		$client = Faye::Client.new(FAYE_CONFIG['defaults']['faye']['url'])
 
 		config.force_ssl = false		# this is not needed because we'll be having ssl on nginx
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
 	end
 end
