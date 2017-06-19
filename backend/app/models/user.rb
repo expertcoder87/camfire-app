@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -18,6 +19,9 @@ class User < ActiveRecord::Base
 	validates_length_of :unconfirmed_email, :maximum => 255
 
 	before_validation :strip_whitespaces
+
+  after_create :add_default_role
+
 	def strip_whitespaces
 		self.firstname = self.firstname.strip if !self.firstname.nil?
 		self.email = self.email.strip if !self.email.nil?
@@ -27,5 +31,21 @@ class User < ActiveRecord::Base
   def games_as_gm
     Game.where(gm_id: id)
   end
+
+  def self.add_default_admin
+    user = User.where(email: 'abraham.ed@gmail.com').first_or_initialize
+    if user.id.blank?
+      user.password = '123123123'
+      user.password_confirmation = '123123123'
+      user.save(validate: false)
+    end
+    user.remove_role :narrator if user.roles.present?
+    user.add_role :admin
+  end
+
+  private
+    def add_default_role    
+      self.add_role :narrator if self.roles.blank? 
+    end
 
 end

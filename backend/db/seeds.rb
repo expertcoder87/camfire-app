@@ -168,3 +168,5 @@ actions = Action.create([{level: 'Good', character_id: character1.id, target_typ
 inventory1 = Inventory.create(name: 'Equipped', character_id: character1.id)
 inventory1_item1 = InventoryItem.create(inventory_id: inventory1.id, thing_id: Thing.first.id)
 inventory1_item2 = InventoryItem.create(inventory_id: inventory1.id, thing_id: Thing.last.id)
+
+Rake::Task['add_role:admin'].invoke
