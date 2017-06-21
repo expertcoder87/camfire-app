@@ -1,6 +1,11 @@
 `import Ember from 'ember'`
 
 controller = Ember.Controller.extend
+  appController: Ember.inject.controller('application')
+  notify: Ember.inject.service('notify')
+  fileObj: ''
+  imageSource: ''
+  roleTypes: ['ADMIN', 'NARRATOR', 'CREATOR']
 
   notify: Ember.inject.service('notify')
   deleteDialog: false

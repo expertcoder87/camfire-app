@@ -32,19 +32,13 @@
         </div>
       </div>
 
-      // Copy from this dummy code
-      <select class="characterTypeButton" onchange={{action (mut model.characterType) value="target.value"}}>
+      <select class="characterTypeButton" onchange={{action (mut model.roleTypes) value="target.value"}}>
         <option> Select Type</option>
-        {{#each characterTypes as |type|}}
-          <option value={{type}} selected={{eq model.characterType type}}>{{type}} </option>
+        {{#each roleTypes as |type|}}
+          <option value={{type}} selected={{eq model.roleTypes type}}>{{type}} </option>
         {{/each}}
       </select>
 
-      <select onchange={{action 'askDelete' value="target.value"}}>
-        {{#each roles as |role|}}
-          <option value={{role}} selected={{eq role role}}>{{role}}</option>
-        {{/each}}
-      </select>
     {{/card.content}}
     {{#card.actions }}
       {{#paper-button primary=true onClick=(action "askDelete")}}Delete{{/paper-button}}

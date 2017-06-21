@@ -34,7 +34,7 @@
     				onToggle=(action (mut leftSideBarOpen))
     		}}
   			{{#each navOptions as |option|}}
-          {{#unless adminUser}}
+          {{#unless adminUser && option=='users'}}
     				{{#paper-content class="contentCustom"}}
     					{{#paper-item onClick=(action "changeRoute" option.[1])}}{{option.[0]}}{{/paper-item}}
     				{{/paper-content}}
