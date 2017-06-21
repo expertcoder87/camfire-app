@@ -4,5 +4,6 @@ model = DS.Model.extend
   email: DS.attr('string')
   firstname: DS.attr('string')
   lastname: DS.attr('string')
+  roleType: DS.attr('string')
 
 `export default model`

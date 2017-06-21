@@ -9,8 +9,19 @@ class Api::Gm::UsersController < Shared::UsersController
     render json: get_user if params[:id].present? 
   end
 
+  def update
+    get_user.update(user_params)
+    @user.roles.delete_all
+    @user.add_role params[:user][:role_type].downcase.to_sym
+    render json: @user
+  end
+
   private
     def get_user
-      User.find(params[:id])
+      @user = User.find(params[:id])
+    end
+
+    def user_params
+      params.require(:user).permit(:email, :firstname, :lastname)
     end
 end

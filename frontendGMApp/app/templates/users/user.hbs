@@ -33,10 +33,11 @@
         <div class="flex-10">
           <div class="layout-row flex">
             <p class="flex-20"> Role: </p>
-            <select class="characterTypeButton" onchange={{action (mut model.roleTypes) value="target.value"}}>
+            <select class="characterTypeButton" onchange={{action (mut model.roleType) value="target.value"}}>
               <option> Select Role</option>
               {{#each roleTypes as |type|}}
-                <option value={{type}} selected={{eq model.roleTypes type}}>{{type}} </option>
+                <option value={{type}} selected={{eq model.role_type type}}>{{type}} </option>
+                }
               {{/each}}
             </select>
           </div>
@@ -47,7 +48,7 @@
     {{#card.actions }}
       {{#paper-button primary=true onClick=(action "askDelete")}}Delete{{/paper-button}}
       {{#paper-button primary=true onClick=(action "goBack")}}Cancel{{/paper-button}}
-      {{#paper-button primary=true onClick=(action "saveThing")}}Save{{/paper-button}}
+      {{#paper-button primary=true onClick=(action "saveUser")}}Save{{/paper-button}}
     {{/card.actions}}
   {{/paper-card}}
 </div>
