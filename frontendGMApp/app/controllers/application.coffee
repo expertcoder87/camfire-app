@@ -1,10 +1,9 @@
 `import Ember from 'ember'`
 
 controller = Ember.Controller.extend
-
   whichNavOptions: true,
   showSpinner: true,
-  navOptions: [["GAMES", "games"], ["MARKETPLACE", "marketplace"]],
+  navOptions: [["GAMES", "games"], ["MARKETPLACE", "marketplace"], ["USERS", "users"]],
   leftSideBarOpen: false,
   loading: false
 

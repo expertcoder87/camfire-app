@@ -1,0 +1,24 @@
+<div>
+  <div class="layout-row flex">
+    <div class= "flex-80 sc-title"> GAMES </div>
+    {{#paper-button primary=true class="flex-20" onClick=(action "createUser")}} Create User {{/paper-button}}
+  </div>
+  {{#paper-list}}
+    {{#each model as |user|}}
+      {{#paper-item class="coolPaperItem" onClick=(action "openUser" user.id)}}
+        <div class="layout-column flex">
+          <div class="flex-50">
+            <div class="layout-row flex">
+                <h3 class="flex-90">{{user.firstname}} {{user.lastname}}</h3>
+            </div>
+          </div>
+          <div class="flex-50">
+            <p>
+              {{user.email}}
+            </p>
+          </div>
+        </div>
+      {{/paper-item}}
+    {{/each}}
+  {{/paper-list}}
+</div>

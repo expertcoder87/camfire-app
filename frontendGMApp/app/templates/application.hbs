@@ -33,12 +33,14 @@
     				open=leftSideBarOpen
     				onToggle=(action (mut leftSideBarOpen))
     		}}
-    			{{#each navOptions as |option|}}
+  			{{#each navOptions as |option|}}
+          {{#unless adminUser}}
     				{{#paper-content class="contentCustom"}}
     					{{#paper-item onClick=(action "changeRoute" option.[1])}}{{option.[0]}}{{/paper-item}}
     				{{/paper-content}}
-    				{{paper-divider}}
-    			{{/each}}
+          {{/unless}}
+  				{{paper-divider}}
+  			{{/each}}
     		{{/paper-sidenav}}
     		<div class="flex-10 rightPane">
     			{{outlet}}

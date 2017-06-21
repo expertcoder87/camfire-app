@@ -1,0 +1,59 @@
+<div style="margin: 0%;">
+  <div class="layout-row flex">
+    <div class="flex-80 sc-title margin-30"> USER </div>
+  </div>
+  {{#paper-card as |card|}}
+    {{#card.title as |title|}}
+      {{#title.text as |text|}}
+        {{#text.headline}}{{model.id}}{{/text.headline}}
+      {{/title.text}}
+    {{/card.title}}
+    {{paper-divider}}
+
+    {{#card.content}}
+      <div class="layout-column flex">
+        <div class="flex-10">
+          <div class="layout-row flex">
+            <p class="flex-20"> First Name: </p>
+            {{input class="flex-80 textAreaWidth" value=model.firstname type="text"}}
+          </div>
+        </div>
+        <div class="flex-10">
+          <div class="layout-row flex">
+            <p class="flex-20"> Last Name: </p>
+            {{input class="flex-80 textAreaWidth" value=model.lastname type="text"}}
+          </div>
+        </div>
+        <div class="flex-10">
+          <div class="layout-row flex">
+            <p class="flex-20"> Email: </p>
+            {{input class="flex-80 textAreaWidth" value=model.email type="text"}}
+          </div>
+        </div>
+      </div>
+
+      // Copy from this dummy code
+      <select class="characterTypeButton" onchange={{action (mut model.characterType) value="target.value"}}>
+        <option> Select Type</option>
+        {{#each characterTypes as |type|}}
+          <option value={{type}} selected={{eq model.characterType type}}>{{type}} </option>
+        {{/each}}
+      </select>
+
+      <select onchange={{action 'askDelete' value="target.value"}}>
+        {{#each roles as |role|}}
+          <option value={{role}} selected={{eq role role}}>{{role}}</option>
+        {{/each}}
+      </select>
+    {{/card.content}}
+    {{#card.actions }}
+      {{#paper-button primary=true onClick=(action "askDelete")}}Delete{{/paper-button}}
+      {{#paper-button primary=true onClick=(action "goBack")}}Cancel{{/paper-button}}
+      {{#paper-button primary=true onClick=(action "saveThing")}}Save{{/paper-button}}
+    {{/card.actions}}
+  {{/paper-card}}
+</div>
+
+{{#if deleteDialog}}
+  {{partial "delete-dialog"}}
+{{/if}}

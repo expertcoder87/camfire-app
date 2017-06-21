@@ -9,7 +9,7 @@ Router.map ->
 	@route 'signup', path: '/signup'
 	@route 'forgot', path: '/forgot'
 	@route 'marketplace', path: '/marketplace'
-	@route 'games', path:'/games', ->
+	@route 'games', path: '/games', ->
 		@route 'game', path: '/:id', ->
 			@route 'inviteplayers', path: 'inviteplayers'
 			@route 'skills', path: '/skills', ->
@@ -39,5 +39,9 @@ Router.map ->
 					@route 'addinventoryitem', path: '/:inventory_id/addinventoryitem'
 					@route 'item', path: '/:item_id'
 		@route 'creategame', path: '/creategame'
+
+	@route 'users', path: '/users', ->
+		@route 'user', path: '/:user_id'
+		@route 'createuser', path: '/createuser'
 
 `export default Router`
