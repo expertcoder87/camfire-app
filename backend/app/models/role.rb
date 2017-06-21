@@ -10,4 +10,8 @@ class Role < ApplicationRecord
             :allow_nil => true
 
   scopify
+
+  def self.add_default_roles
+    %w(admin creator narrator).map{ |role| Role.where(name: role).first_or_initialize.save }
+  end
 end
