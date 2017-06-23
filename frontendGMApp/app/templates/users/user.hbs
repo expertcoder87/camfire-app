@@ -5,7 +5,7 @@
   {{#paper-card as |card|}}
     {{#card.title as |title|}}
       {{#title.text as |text|}}
-        {{#text.headline}}{{model.id}}{{/text.headline}}
+        {{#text.headline}}{{model.firstname}}{{/text.headline}}
       {{/title.text}}
     {{/card.title}}
     {{paper-divider}}
@@ -36,14 +36,13 @@
             <select class="characterTypeButton" onchange={{action (mut model.roleType) value="target.value"}}>
               <option> Select Role</option>
               {{#each roleTypes as |type|}}
-                <option value={{type}} selected={{eq model.role_type type}}>{{type}} </option>
+                <option value={{type}} selected={{eq model.roleType type}}>{{type}} </option>
                 }
               {{/each}}
             </select>
           </div>
         </div>
       </div>
-
     {{/card.content}}
     {{#card.actions }}
       {{#paper-button primary=true onClick=(action "askDelete")}}Delete{{/paper-button}}

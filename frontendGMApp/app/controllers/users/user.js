@@ -7,7 +7,6 @@ controller = Ember.Controller.extend({
   fileObj: '',
   imageSource: '',
   roleTypes: ['ADMIN', 'NARRATOR', 'CREATOR'],
-  notify: Ember.inject.service('notify'),
   deleteDialog: false,
   actions: {
     askDelete: function() {
@@ -16,28 +15,26 @@ controller = Ember.Controller.extend({
     removeDeleteDialog: function() {
       return this.set('deleteDialog', false);
     },
+    
     "delete": function() {
       var that;
       that = this;
-      this.model.get('inventoryItems').forEach(function(record) {
-        return record.unloadRecord();
-      });
       return this.model.destroyRecord().then(function() {
         that.set('deleteDialog', false);
-        return that.transitionToRoute("games.game.things.index");
+        return that.transitionToRoute("users.index");
       });
     },
+
     saveUser: function() {
       var self;
       self = this;
-      debugger
-      return self.get('model').save().then(function(record) {
+      return self.get('model').save().then(function() {
         self.get('notify').info("Success !!");
         return self.transitionToRoute("users.index");
       });
     },
     goBack: function() {
-      return this.transitionToRoute("games.game.things.index");
+      return this.transitionToRoute("users.index");
     },
     updateRecord: function(file) {
       var fileReader, self;

@@ -14,6 +14,6 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def role_type
-    self.object.roles.first.name.try(:upcase)
+    self.object.roles.first.try(:name).try(:upcase)
   end
 end

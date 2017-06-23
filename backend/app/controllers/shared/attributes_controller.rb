@@ -1,14 +1,5 @@
 class Shared::AttributesController < ApplicationController
 
-  def show
-    begin
-      @attribute = Attribute.find(params[:id])
-      render json: @attribute
-    rescue =>e
-      render json: []
-    end
-  end
-
   def index
     #return actions which are not assigned
     if params[:ids]

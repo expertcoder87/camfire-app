@@ -46,7 +46,9 @@
         </div>
       {{/card.content}}
       {{#card.actions }}
-        {{#paper-button primary=true onClick=(action "askDelete")}}Delete{{/paper-button}}
+        {{#if (eq this.session.user.roleType "ADMIN")}}
+          {{#paper-button primary=true onClick=(action "askDelete")}}Delete{{/paper-button}}
+        {{/if}}
         {{#paper-button primary=true onClick=(action "goBack")}}Cancel{{/paper-button}}
         {{#paper-button primary=true onClick=(action "saveThing")}}Save{{/paper-button}}
       {{/card.actions}}

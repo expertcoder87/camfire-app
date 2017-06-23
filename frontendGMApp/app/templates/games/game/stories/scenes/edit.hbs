@@ -52,9 +52,11 @@
         </div>
       {{/card.content}}
       {{#card.actions }}
+        {{#if (eq this.session.user.roleType "ADMIN")}}
           {{#paper-button primary=true onClick=(action "askDelete")}}Delete{{/paper-button}}
-          {{#paper-button primary=true onClick=(action 'goBack')}}Cancel{{/paper-button}}
-          {{#paper-button primary=true onClick=(action 'saveRecord')}}Save{{/paper-button}}
+        {{/if}}
+        {{#paper-button primary=true onClick=(action 'goBack')}}Cancel{{/paper-button}}
+        {{#paper-button primary=true onClick=(action 'saveRecord')}}Save{{/paper-button}}
       {{/card.actions}}
     {{/paper-card}}
 </div>

@@ -16,6 +16,13 @@ class Api::Gm::UsersController < Shared::UsersController
     render json: @user
   end
 
+  def destroy
+    @user = get_user
+    if @user
+      render json: @user.destroy
+    end
+  end
+
   private
     def get_user
       @user = User.find(params[:id])
