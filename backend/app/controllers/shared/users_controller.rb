@@ -35,13 +35,20 @@ class Shared::UsersController < ApplicationController
 					format.json {render json: {:message => "Sorry, User or Password is invalid."}}
 				end
 			else
+				
 				if user.valid_password?(params[:user][:password])      #Check the password validtity
 					sign_in(:user, user)                                #Sign in the user
-					if current_user
+					
+					if current_user.roles.first.name.eql?("narrator")
+						respond_to do |format|
+							format.json {render json: {:message => "you are not authorization person for this action"}}
+						end
+					else
 						respond_to do |format|
 							format.json {render json: {:message => "Sign in successful"}}
 						end
 					end
+				
 				else
 					respond_to do |format|
 						format.json {render json: {:message => "Sorry, User or Password is invalid."}}

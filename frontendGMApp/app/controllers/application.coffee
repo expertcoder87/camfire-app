@@ -4,6 +4,7 @@ controller = Ember.Controller.extend
   whichNavOptions: true,
   showSpinner: true,
   navOptions: [["GAMES", "games"], ["MARKETPLACE", "marketplace"], ["USERS", "users"]],
+  navOptionsCreator: [["GAMES", "games"], ["MARKETPLACE", "marketplace"]],
   leftSideBarOpen: false,
   loading: false
 
