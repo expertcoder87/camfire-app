@@ -18,6 +18,7 @@ module.exports = function(deployTarget) {
 
   if (deployTarget === 'production') {
     ENV.build.environment = 'production';
+    ember s
     // configure other plugins for production deploy target here
   }
 
