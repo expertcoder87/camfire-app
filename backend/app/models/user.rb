@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   end
 
   def self.add_default_admin
-    user = User.where(email: 'abraham.ed@gmail.com').first_or_initialize
+    user = User.where(email: 'admin@example.com').first_or_initialize
     if user.id.blank?
       user.password = '123123123'
       user.password_confirmation = '123123123'
